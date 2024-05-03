@@ -15,8 +15,12 @@ public class BlindGazer : MonoBehaviour
     public bool moveUp = true; 
     public float speed = 1.0f;
 
-        void Update()
+    void Update()
     {
+        UpdateState();
+    }
+
+    void UpdateState() {
         // Movimiento Enemigo
         if (moveUp)
         {

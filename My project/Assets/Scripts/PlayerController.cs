@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Vector2 posicion;
-    public float velocity = 0.5f;
+    public float velocity = 5f;
     public GameObject player;
     // Start is called before the first frame update
     void Start()
@@ -18,20 +18,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ProcessInput();
+    }
+
+    void ProcessInput() {
         float direction_x = 0;
         float direction_y = 0;
 
         if(Input.GetKey(KeyCode.W)){
-            direction_x = 1f;
+            direction_y = 1f;
         }
         if(Input.GetKey(KeyCode.S)){
-            direction_x = -1f;
-        }
-        if(Input.GetKey(KeyCode.A)){
             direction_y = -1f;
         }
+        if(Input.GetKey(KeyCode.A)){
+            direction_x = -1f;
+        }
         if(Input.GetKey(KeyCode.D)){
-            direction_y = 1f;
+            direction_x = 1f;
         }
         posicion = new Vector2(direction_x, direction_y).normalized;
         
