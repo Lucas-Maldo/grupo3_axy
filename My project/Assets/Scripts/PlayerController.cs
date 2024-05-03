@@ -16,28 +16,26 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        float x = player.transform.position.x;
-        float y = player.transform.position.y;
-        posicion = new Vector2(x,y);
-        if(Input.GetKey(KeyCode.W)){
-            posicion.y += velocity;
-        }
-        
-        if(Input.GetKey(KeyCode.S)){
-            posicion.y -= velocity;
-        }
-        
-        if(Input.GetKey(KeyCode.A)){
-            posicion.x -= velocity;
-        }
-        
-        if(Input.GetKey(KeyCode.D)){
-            posicion.x += velocity;
-        }
-        player.transform.position = posicion;
-        // player.transform.Translate(posicion);
+        float direction_x = 0;
+        float direction_y = 0;
 
+        if(Input.GetKey(KeyCode.W)){
+            direction_x = 1f;
+        }
+        if(Input.GetKey(KeyCode.S)){
+            direction_x = -1f;
+        }
+        if(Input.GetKey(KeyCode.A)){
+            direction_y = -1f;
+        }
+        if(Input.GetKey(KeyCode.D)){
+            direction_y = 1f;
+        }
+        posicion = new Vector2(direction_x, direction_y).normalized;
+        
+        // player.transform.position = posicion;
+        player.transform.Translate(posicion * velocity * Time.deltaTime);
     }
 }
