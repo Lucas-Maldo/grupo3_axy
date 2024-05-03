@@ -7,8 +7,6 @@ public class RandomSpawner : MonoBehaviour
     public GameObject arrow;
     GameObject[] arrows;
     GameObject skeleton;
-    GameObject arrow_instance;
-    private float disToSkeleton = 3f;
     private float interval = 1f;
     private float startTime;
     private float elapsedTime;
@@ -32,7 +30,7 @@ public class RandomSpawner : MonoBehaviour
             Debug.Log(randomPosition);
             Instantiate(arrow, randomSpawnPosition, Quaternion.identity);
         }
-        GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+        arrows = GameObject.FindGameObjectsWithTag("Arrow");
         if(arrows.Length > 1){
             Destroy(arrows[0]);
         }
