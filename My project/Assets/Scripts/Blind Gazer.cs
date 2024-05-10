@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BlindGazer : MonoBehaviour
 {
-    
-
     // Posisiones
     private float startX = 2.0f;
     private float startY = -3.0f;
@@ -31,12 +29,15 @@ public class BlindGazer : MonoBehaviour
             transform.position = new Vector2(startX, transform.position.y - speed * Time.deltaTime);
         }
 
-       // Cambio Direccion
-        if (transform.position.y >= endY)
+        CheckDirection(transform.position);
+    }
+
+    void CheckDirection(Vector2 position) {
+        if (position.y >= endY)
         {
             moveUp = false;
         }
-        else if (transform.position.y <= startY)
+        else if (position.y <= startY)
         {
             moveUp = true;
         }

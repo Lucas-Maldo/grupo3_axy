@@ -20,20 +20,25 @@ public class RandomSpawner : MonoBehaviour
         elapsedTime = Time.time - startTime;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if(elapsedTime >= interval){
+        ArrowSpawn();
+        ArrowDestroy();
+    }
+
+    void ArrowSpawn(){
+         if(elapsedTime >= interval){
             startTime = Time.time;
             Vector3 randomPosition = 3 * new Vector3(Random.Range(-3f, 4f), Random.Range(-3f, 4f), 0).normalized;
             Vector2 randomSpawnPosition = skeleton.transform.position + randomPosition;
             Debug.Log(randomPosition);
             Instantiate(arrow, randomSpawnPosition, Quaternion.identity);
         }
+    }
+    void ArrowDestroy(){
         arrows = GameObject.FindGameObjectsWithTag("Arrow");
         if(arrows.Length > 1){
             Destroy(arrows[0]);
         }
-
     }
 }
