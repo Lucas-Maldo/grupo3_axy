@@ -37,9 +37,12 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.D)){
             direction_x = 1f;
         }
-        posicion = new Vector2(direction_x, direction_y).normalized;
         
-        // player.transform.position = posicion;
-        player.transform.Translate(posicion * velocity * Time.deltaTime);
+        Movement(direction_x, direction_y);
+    }
+
+    void Movement(float x, float y) {
+        posicion = new Vector2(x, y).normalized;
+        player.transform.Translate(Time.deltaTime * velocity * posicion);
     }
 }
