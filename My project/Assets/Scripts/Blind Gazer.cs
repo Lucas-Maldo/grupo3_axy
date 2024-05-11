@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BlindGazer : MonoBehaviour
 {
-    // Posisiones
+    // Positions
     private float startX = 2.0f;
     private float startY = -3.0f;
     private float endY = 3.0f;
 
-    // Movimiento
+    // Movement
     public bool moveUp = true; 
     public float speed = 1.0f;
 
@@ -18,21 +18,36 @@ public class BlindGazer : MonoBehaviour
         UpdateState();
     }
 
-    void UpdateState() {
-        // Movimiento Enemigo
-        if (moveUp)
-        {
-            transform.position = new Vector2(startX, transform.position.y + speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = new Vector2(startX, transform.position.y - speed * Time.deltaTime);
-        }
-
+    void UpdateState() 
+    {
+        MoveEnemy();
         CheckDirection(transform.position);
     }
 
-    void CheckDirection(Vector2 position) {
+    void MoveEnemy()
+    {
+        if (moveUp)
+        {
+            MoveUp();
+        }
+        else
+        {
+            MoveDown();
+        }
+    }
+
+    void MoveUp()
+    {
+        transform.position = new Vector2(startX, transform.position.y + speed * Time.deltaTime);
+    }
+
+    void MoveDown()
+    {
+        transform.position = new Vector2(startX, transform.position.y - speed * Time.deltaTime);
+    }
+
+    void CheckDirection(Vector2 position) 
+    {
         if (position.y >= endY)
         {
             moveUp = false;

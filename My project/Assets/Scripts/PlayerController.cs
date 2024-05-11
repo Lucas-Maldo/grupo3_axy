@@ -1,48 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector2 posicion;
-    public float velocity = 5f;
     public GameObject player;
-    // Start is called before the first frame update
+    public float velocity;
+
+    private Vector2 position;
+
     void Start()
     {
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
-
-        Debug.Log(posicion);
+        InitializePlayer();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        ProcessInput();
+        Vector2 direction = ProcessInput();
+        Movement(direction);
     }
 
-    void ProcessInput() {
+    void InitializePlayer()
+    {
+        player = GameObject.FindGameObjectsWithTag("Player")[0];
+    }
+
+    Vector2 ProcessInput()
+    {
         float direction_x = 0;
         float direction_y = 0;
 
-        if(Input.GetKey(KeyCode.W)){
+        if (Input.GetKey(KeyCode.W))
+        {
             direction_y = 1f;
         }
-        if(Input.GetKey(KeyCode.S)){
+        if (Input.GetKey(KeyCode.S))
+        {
             direction_y = -1f;
         }
-        if(Input.GetKey(KeyCode.A)){
+        if (Input.GetKey(KeyCode.A))
+        {
             direction_x = -1f;
         }
-        if(Input.GetKey(KeyCode.D)){
+        if (Input.GetKey(KeyCode.D))
+        {
             direction_x = 1f;
         }
-        
-        Movement(direction_x, direction_y);
+
+        return new Vector2(direction_x, direction_y);
     }
 
-    void Movement(float x, float y) {
-        posicion = new Vector2(x, y).normalized;
-        player.transform.Translate(Time.deltaTime * velocity * posicion);
+    void Movement(Vector2 direction)
+    {
+        position = direction.normalized;
+        player.transform.Translate(Time.deltaTime * velocity * position);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        HandleCollision(collision);
+    }
+
+    void HandleCollision(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "BlindGazer" || collision.gameObject.tag == "Skeleton")
+        {
+            Debug.Log("Collided with: " + collision.gameObject.tag);
+            EditorApplication.Beep();
+        }
     }
 }
