@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Skeleton
   - Arrow
+  - Wall
+  - Enemy
+  - BlindGazer
   layers:
   - Default
   - TransparentFX

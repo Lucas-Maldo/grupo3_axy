@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 508477549}
   m_Layer: 0
   m_Name: Wall bottom
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -458,7 +458,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10.372144
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 752854241}
   m_Layer: 0
   m_Name: Wall left
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 819435621}
   m_Layer: 0
   m_Name: Wall top
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 1243866553}
   m_Layer: 0
   m_Name: BlindGazer
-  m_TagString: Untagged
+  m_TagString: BlindGazer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 1521630099}
   m_Layer: 0
   m_Name: Wall right
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1237,8 +1237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57727f6880c7ea248855eb6e80ff67ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 5
   player: {fileID: 0}
+  velocity: 5
 --- !u!212 &1711325413
 SpriteRenderer:
   m_ObjectHideFlags: 0
