@@ -1218,6 +1218,9 @@ GameObject:
   - component: {fileID: 1711325412}
   - component: {fileID: 1711325415}
   - component: {fileID: 1711325416}
+  - component: {fileID: 1711325419}
+  - component: {fileID: 1711325418}
+  - component: {fileID: 1711325417}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Player
@@ -1237,6 +1240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57727f6880c7ea248855eb6e80ff67ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Input: {fileID: 1711325419}
+  Physics: {fileID: 1711325418}
+  Audio: {fileID: 1711325417}
   player: {fileID: 0}
   velocity: 5
 --- !u!212 &1711325413
@@ -1368,6 +1374,42 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1711325417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711325411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962e46062b9cd1e45b0e497750191d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1711325418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711325411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c50cdec9ded2d4d499133512cbd4e0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1711325419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711325411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec02d631ee427f54aa328d1401744169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2107296118
 GameObject:
   m_ObjectHideFlags: 0
