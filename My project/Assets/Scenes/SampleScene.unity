@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 282542747}
   - component: {fileID: 282542746}
   - component: {fileID: 282542749}
+  - component: {fileID: 282542751}
+  - component: {fileID: 282542750}
   m_Layer: 0
   m_Name: Square
   m_TagString: Skeleton
@@ -154,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08504340531cb004b9dad71f285cfdca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooting: {fileID: 0}
-  timing: {fileID: 0}
+  shooting: {fileID: 282542751}
+  timing: {fileID: 282542750}
 --- !u!212 &282542747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -268,6 +270,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &282542750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282542745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823969634d8fbea46b60d5979a08a202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootingComponent: {fileID: 282542751}
+--- !u!114 &282542751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282542745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7269df9f312a93248a8c6a80f79f0f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 3401312886268914815, guid: 9fb5875fce513ef4284564b20ba10ae7, type: 3}
 --- !u!1 &508477547
 GameObject:
   m_ObjectHideFlags: 0
