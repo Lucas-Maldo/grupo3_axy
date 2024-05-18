@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Enemy
   - BlindGazer
+  - Exit
   layers:
   - Default
   - TransparentFX
