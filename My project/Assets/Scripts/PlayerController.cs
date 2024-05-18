@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    
     public InputController Input; 
     public PhysicsController Physics; 
     // public StateController States; 
@@ -28,5 +30,16 @@ public class PlayerController : MonoBehaviour
     void InitializePlayer()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Arrow" || collision.gameObject.tag == "BlindGazer" || collision.gameObject.tag == "Skeleton")
+        {
+            Debug.Log("Collided with: " + collision.gameObject.tag);
+            //end the game or restart the game
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        }
     }
 }
