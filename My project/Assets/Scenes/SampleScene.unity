@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08504340531cb004b9dad71f285cfdca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrow: {fileID: 3401312886268914815, guid: 9fb5875fce513ef4284564b20ba10ae7, type: 3}
+  shooting: {fileID: 0}
+  timing: {fileID: 0}
 --- !u!212 &282542747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -862,8 +863,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1243866552}
   - component: {fileID: 1243866551}
-  - component: {fileID: 1243866550}
   - component: {fileID: 1243866553}
+  - component: {fileID: 1243866554}
+  - component: {fileID: 1243866556}
+  - component: {fileID: 1243866555}
   m_Layer: 0
   m_Name: BlindGazer
   m_TagString: BlindGazer
@@ -871,20 +874,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1243866550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243866549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6b0eff58b8da046ac24980dbfe40f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveUp: 1
-  speed: 1
 --- !u!212 &1243866551
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1000,6 +989,50 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
+--- !u!114 &1243866554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243866549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6b0eff58b8da046ac24980dbfe40f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 0}
+  stateController: {fileID: 0}
+  moveUp: 0
+--- !u!114 &1243866555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243866549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4552ed47d388fc54e9c30a2b1b48d8c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startY: -3
+  endY: 3
+  moveUp: 1
+--- !u!114 &1243866556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243866549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1e3a4915abc5744bbd6626e5f845ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  startX: 2
 --- !u!1 &1521630097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962e46062b9cd1e45b0e497750191d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!114 &1711325418
 MonoBehaviour:
   m_ObjectHideFlags: 0
