@@ -963,7 +963,7 @@ Transform:
   m_GameObject: {fileID: 1243866549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  startX: 2
+  startX: 0
 --- !u!1 &1521630097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1306,7 @@ MonoBehaviour:
   Physics: {fileID: 1711325418}
   Audio: {fileID: 1711325417}
   player: {fileID: 0}
+  gameEnd: 0
   velocity: 5
 --- !u!212 &1711325413
 SpriteRenderer:
