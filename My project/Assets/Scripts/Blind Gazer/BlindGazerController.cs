@@ -15,6 +15,7 @@ public class BlindGazer : MonoBehaviour
 
     void Update()
     {
+
         moveUp = stateController.CheckDirection(transform.position);
         movementController.MoveEnemy(moveUp);
     }

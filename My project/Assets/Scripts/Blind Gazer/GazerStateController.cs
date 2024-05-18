@@ -10,11 +10,11 @@ public class StateController : MonoBehaviour
     {
         if (position.y >= endY)
         {
-            return false;
+            moveUp = false;
         }
         else if (position.y <= startY)
         {
-            return true;
+            moveUp = true;
         }
         return moveUp;
     }

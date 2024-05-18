@@ -3,7 +3,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public float speed = 1.0f;
-    public float startX = 2.0f;
+    public float startX = 0.0f;
     
     public void MoveEnemy(bool moveUp)
     {
