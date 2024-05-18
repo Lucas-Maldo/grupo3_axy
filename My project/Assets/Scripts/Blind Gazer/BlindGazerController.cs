@@ -9,8 +9,8 @@ public class BlindGazer : MonoBehaviour
 
     void Start()
     {
-        movementController = this.GetComponent<MovementController>();
-        stateController = this.GetComponent<StateController>();
+        movementController = transform.GetComponent<MovementController>();
+        stateController = transform.GetComponent<StateController>();
     }
 
     void Update()
