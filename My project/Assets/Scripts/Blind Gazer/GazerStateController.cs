@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class StateController : MonoBehaviour
 {
-    public float startY = -3.0f; 
-    public float endY = 3.0f;
+    public float startY = 1.0f; 
+    public float endY = 5.0f;
     public bool moveUp = true;
 
     public bool CheckDirection(Vector2 position) 

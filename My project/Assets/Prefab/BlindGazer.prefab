@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6b0eff58b8da046ac24980dbfe40f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementController: {fileID: 0}
-  stateController: {fileID: 0}
+  movementController: {fileID: 1870395616404546492}
+  stateController: {fileID: 4592362783244487087}
   moveUp: 0
 --- !u!114 &1870395616404546492
 MonoBehaviour:
