@@ -12,13 +12,8 @@ public class AudioController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void playAudio()
     {
-        if (collision.gameObject.tag == "Arrow" || collision.gameObject.tag == "BlindGazer" || collision.gameObject.tag == "Skeleton")
-        {
-            Debug.Log("Collided with: " + collision.gameObject.tag);
-            // audioSource.PlayOneShot();
-            audioSource.PlayOneShot(impact, 0.7F);
-        }
+        audioSource.PlayOneShot(impact, 0.7F);
     }
 }

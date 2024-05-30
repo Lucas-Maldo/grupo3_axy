@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IObserver
 {
     
     public InputController Input; 
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         // States = this.GetComponent<StateController>();
         Audio = this.GetComponent<AudioController>();
         InitializePlayer();
+        GlobalListener.instance.RegisterObserver(this);
     }
 
     void Update()
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = Input.Update();
         Physics.Movement(direction, velocity, player);
         if(Time.time - startTime >= interval && gameEnd){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GlobalListener.instance.NotifyLose();
         }
     }
 
@@ -45,16 +46,25 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collided with: " + collision.gameObject.tag);
             startTime = Time.time;
             gameEnd = true;
+            GlobalListener.instance.NotifyAudio();
         }
         
         if (collision.gameObject.tag == "Exit") 
         {
-            WinGame();
+            GlobalListener.instance.NotifyWin();
         }
     }
-
-    void WinGame()
+    public void OnNotifyWin()
     {
         Debug.Log("¡Has ganado!");
-    }   
+    }
+    public void OnNotifyLose()
+    {
+        Debug.Log("¡Has perdido!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void OnNotifyAudio()
+    {
+        Audio.playAudio();
+    }
 }
