@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 3401312886268914815, guid: 9fb5875fce513ef4284564b20ba10ae7, type: 3}
-  ArrowSpawnDistance: 8
+  ArrowSpawnDistance: 5
 --- !u!114 &8429892733419720694
 MonoBehaviour:
   m_ObjectHideFlags: 0
