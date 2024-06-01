@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-    public float speed = 1.0f;
-    public float startX = 0.5f;
-    
+    public float speed = 2.0f;
+    public float startX;
+
+    void Start()
+    {
+        startX = transform.position.x;
+    }
+
     public void MoveEnemy(bool moveUp)
     {
         if (moveUp)

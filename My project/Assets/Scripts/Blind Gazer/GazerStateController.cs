@@ -2,13 +2,20 @@ using UnityEngine;
 
 public class StateController : MonoBehaviour
 {
-    public float startY = 1.0f; 
+    public float startY; 
     public float endY = 5.0f;
     public bool moveUp = true;
 
+    void Start()
+    {
+        startY = transform.position.y;
+    }
+
     public bool CheckDirection(Vector2 position) 
     {
-        if (position.y >= endY)
+        Debug.Log("Position Y - Start Y: " + (position.y - startY));
+        
+        if (position.y - startY >= endY)
         {
             moveUp = false;
         }
