@@ -3,7 +3,9 @@ using UnityEngine;
 public class TimingScript : MonoBehaviour
 {
     public ShootingScipt shootingComponent;
-    private float interval = 1f;
+    
+    [SerializeField]
+    public float interval = 1f;
     private float elapsedTime;
 
     private void Update()

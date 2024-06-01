@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShootingScipt : MonoBehaviour
 {
     public GameObject arrow;
     private GameObject skeleton;
+    public float ArrowSpawnDistance = 3f;
 
     private void Start()
     {
@@ -12,7 +14,7 @@ public class ShootingScipt : MonoBehaviour
 
     public void ArrowSpawn()
     {
-        Vector3 randomPosition = 3 * new Vector3(Random.Range(-3f, 4f), Random.Range(-3f, 4f), 0).normalized;
+        Vector3 randomPosition = ArrowSpawnDistance * new Vector3(Random.Range(-ArrowSpawnDistance, ArrowSpawnDistance+1), Random.Range(-ArrowSpawnDistance, ArrowSpawnDistance+1f), 0).normalized;
         Vector2 randomSpawnPosition = skeleton.transform.position + randomPosition;
         Instantiate(arrow, randomSpawnPosition, Quaternion.identity);
     }

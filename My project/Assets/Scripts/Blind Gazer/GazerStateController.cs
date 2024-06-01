@@ -13,7 +13,7 @@ public class StateController : MonoBehaviour
 
     public bool CheckDirection(Vector2 position) 
     {
-        Debug.Log("Position Y - Start Y: " + (position.y - startY));
+        //Debug.Log("Position Y - Start Y: " + (position.y - startY));
         
         if (position.y - startY >= endY)
         {

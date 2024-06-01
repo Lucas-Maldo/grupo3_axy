@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 3401312886268914815, guid: 9fb5875fce513ef4284564b20ba10ae7, type: 3}
+  ArrowSpawnDistance: 8
 --- !u!114 &8429892733419720694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,3 +174,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingComponent: {fileID: 2145393076572080418}
+  interval: 1
