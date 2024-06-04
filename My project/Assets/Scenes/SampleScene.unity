@@ -422,6 +422,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 4611780797347754477, guid: 98607020eec4c2947abeecf1d0b801b0, type: 3}
   skeletonPrefab: {fileID: 2259602293790604760, guid: a26caa6d6d3f0ad499b6c4cb11f25c15, type: 3}
   blindGazerPrefab: {fileID: 986552497737306298, guid: 3029a312937b13844aa3a41e0cbe785c, type: 3}
+  cowardRatPrefab: {fileID: 6723659814666251852, guid: 79e11f39dffd3114daf8b2e035da05ad, type: 3}
   exitPrefab: {fileID: 4085111692371329278, guid: d7c67ad7bf4a007468ba72e9dba8f672, type: 3}
   levelFilePath: Assets/Scripts/Level/Level01.txt
 --- !u!483693784 &1430396550
@@ -561,7 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13903163, g: 0.23036708, b: 0.2603773, a: 1}
+  m_Color: {r: 0.18169452, g: 0.53475857, b: 0.6377357, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

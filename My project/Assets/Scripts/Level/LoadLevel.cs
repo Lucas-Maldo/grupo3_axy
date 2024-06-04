@@ -7,6 +7,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject skeletonPrefab;
     public GameObject blindGazerPrefab;
+    public GameObject cowardRatPrefab;
     public GameObject exitPrefab;
     public string levelFilePath = "Assets/Scripts/Level/Level01.txt";
 
@@ -41,6 +42,9 @@ public class LevelLoader : MonoBehaviour
                         break;
                     case '5':
                         Instantiate(exitPrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        break;
+                    case '6':
+                        Instantiate(cowardRatPrefab, new Vector3(x, -y, 0), Quaternion.identity);
                         break;
                 }
             }
