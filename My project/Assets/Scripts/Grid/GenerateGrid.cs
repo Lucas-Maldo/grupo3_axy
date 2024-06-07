@@ -8,9 +8,9 @@ public static class GridGenerator
 {
     public static List<List<char>> CreateOptimizedGrid(string[] levelLines)
 {
-    Debug.Log("empezando el grid");
-    Debug.Log(levelLines.Length);
-    Debug.Log(string.Join("\n", levelLines));
+    // Debug.Log("empezando el grid");
+    // Debug.Log(levelLines.Length);
+    // Debug.Log(string.Join("\n", levelLines));
 
     List<List<char>> optimizedGrid = new List<List<char>>();
 
