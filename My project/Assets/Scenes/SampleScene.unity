@@ -424,6 +424,7 @@ MonoBehaviour:
   blindGazerPrefab: {fileID: 986552497737306298, guid: 3029a312937b13844aa3a41e0cbe785c, type: 3}
   cowardRatPrefab: {fileID: 6723659814666251852, guid: 79e11f39dffd3114daf8b2e035da05ad, type: 3}
   exitPrefab: {fileID: 4085111692371329278, guid: d7c67ad7bf4a007468ba72e9dba8f672, type: 3}
+  hungryZombiePrefab: {fileID: 3292439454642924470, guid: 76c42cbd280116e4a98d3db6c61d5a91, type: 3}
   levelFilePath: Assets/Scripts/Level/Level01.txt
 --- !u!483693784 &1430396550
 TilemapRenderer:
