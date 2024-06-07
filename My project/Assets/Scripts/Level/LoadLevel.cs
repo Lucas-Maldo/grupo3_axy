@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -9,16 +10,22 @@ public class LevelLoader : MonoBehaviour
     public GameObject blindGazerPrefab;
     public GameObject cowardRatPrefab;
     public GameObject exitPrefab;
+    public GameObject hungryZombiePrefab;
     public string levelFilePath = "Assets/Scripts/Level/Level01.txt";
+    public List<List<char>> optimizedGrid;
+    public string[] levelLines;
+
 
     void Start()
     {
         LoadLevel();
+        //Debug.Log("termine de cargar el nivel");
+        optimizedGrid = GridGenerator.CreateOptimizedGrid(levelLines);
     }
 
     void LoadLevel()
     {
-        string[] levelLines = File.ReadAllLines(levelFilePath);
+        levelLines = File.ReadAllLines(levelFilePath);
 
         for (int y = 0; y < levelLines.Length; y++)
         {
@@ -45,6 +52,9 @@ public class LevelLoader : MonoBehaviour
                         break;
                     case '6':
                         Instantiate(cowardRatPrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        break;
+                    case '7':
+                        Instantiate(hungryZombiePrefab, new Vector3(x, -y, 0), Quaternion.identity);
                         break;
                 }
             }
