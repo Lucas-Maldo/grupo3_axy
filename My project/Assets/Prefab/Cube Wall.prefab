@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6675424285138241784}
   - component: {fileID: 3095882895642217285}
-  - component: {fileID: 499872210644403853}
-  m_Layer: 0
+  - component: {fileID: 5131043771378541118}
+  m_Layer: 6
   m_Name: Cube Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 54c3484f61513e5438707b11ac58084c, type: 3}
   m_Color: {r: 0.3764706, g: 0.3764706, b: 0.3764706, a: 1}
   m_FlipX: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &499872210644403853
+--- !u!61 &5131043771378541118
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

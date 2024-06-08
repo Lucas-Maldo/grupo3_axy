@@ -12,7 +12,8 @@ public class LevelLoader : MonoBehaviour
     public GameObject hungryZombiePrefab;
     public string levelFilePath = "Assets/Scripts/Level/Level01.txt";
 
-    void Start()
+    public static bool loadLevelReady = false;
+    void Awake()
     {
         LoadLevel();
     }
@@ -47,11 +48,12 @@ public class LevelLoader : MonoBehaviour
                     case '6':
                         Instantiate(cowardRatPrefab, new Vector3(x, -y, 0), Quaternion.identity);
                         break;
-                    case '7':
-                        Instantiate(hungryZombiePrefab, new Vector3(x, -y, 0), Quaternion.identity);
-                        break;
+                    // case '7':
+                    //     Instantiate(hungryZombiePrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                    //     break;
                 }
             }
         }
+        loadLevelReady = true;
     }
 }
