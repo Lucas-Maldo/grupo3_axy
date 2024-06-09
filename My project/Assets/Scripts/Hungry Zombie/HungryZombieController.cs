@@ -9,19 +9,17 @@ public class HungryZombieController : MonoBehaviour
     public GameObject player;
     public List<GraphNode> path;
     private Vector3 lastPlayerPosition;
-    private const float updateInterval = 1.0f;  // Update interval set to 1 second
+    private const float updateInterval = 1.0f; 
 
     void Awake()
     {
-        int graphWidth = 62;
-        int graphHeight = 33;
-        Vector3 graphOffset = Vector3.zero;  // Assuming your world coordinates start from (0, 0)
-        graph = new Graph(graphWidth, graphHeight, graphOffset);
+        graph = new Graph();
     }
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        FindPlayer();
+
         if (player == null)
         {
             Debug.Log("Player is not set.");
@@ -29,28 +27,25 @@ public class HungryZombieController : MonoBehaviour
         }
 
         lastPlayerPosition = player.transform.position;
-        Debug.Log("Player last position: " + lastPlayerPosition);
-
+       
         if (graph == null)
         {
             Debug.Log("Graph is not set.");
             return;
         }
 
+        
         Vector3 enemyPosition = transform.position;
         Vector3 playerPosition = player.transform.position;
 
-        Debug.Log("Enemy position: " + enemyPosition);
-        Debug.Log("Player position: " + playerPosition);
 
-        if (!graph.IsPositionWithinBounds(enemyPosition) || !graph.IsPositionWithinBounds(playerPosition))
+        if (!IsPositionsWithinGraphBounds(enemyPosition, playerPosition))
         {
             Debug.LogError("Enemy or player position is outside the bounds of the graph.");
             return;
         }
 
-        Debug.Log("Graph and Player are set.");
-        path = graph.AStarSearch(graph.GetNode(enemyPosition), graph.GetNode(playerPosition));
+        path = CalculatePathToPlayer(enemyPosition, playerPosition);
         if (path != null)
         {
             Debug.Log("Path found with " + path.Count + " nodes.");
@@ -60,8 +55,25 @@ public class HungryZombieController : MonoBehaviour
             Debug.Log("No path found.");
         }
 
-        //StartCoroutine(UpdatePath());
+        StartCoroutine(UpdatePath());
     }
+
+    private void FindPlayer()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    
+    private bool IsPositionsWithinGraphBounds(Vector3 enemyPosition, Vector3 playerPosition)
+    {
+        return graph.IsPositionWithinBounds(enemyPosition) && graph.IsPositionWithinBounds(playerPosition);
+    }
+
+    private List<GraphNode> CalculatePathToPlayer(Vector3 enemyPosition, Vector3 playerPosition)
+    {
+        return graph.AStarSearch(graph.GetNode(enemyPosition), graph.GetNode(playerPosition));
+    }
+
 
     private IEnumerator UpdatePath()
     {
@@ -73,30 +85,28 @@ public class HungryZombieController : MonoBehaviour
             {
                 lastPlayerPosition = playerPosition;
 
-                if (!graph.IsPositionWithinBounds(transform.position) || !graph.IsPositionWithinBounds(playerPosition))
+                graph = new Graph();
+
+                Vector3 enemyPosition = transform.position;
+
+                if (!IsPositionsWithinGraphBounds(enemyPosition, playerPosition))
                 {
                     Debug.LogError("Enemy or player position is outside the bounds of the graph.");
+                    //break; // Aca hay que agregar el tema de si choca al jugador
+                }
+
+                path = CalculatePathToPlayer(enemyPosition, playerPosition);
+                if (path != null)
+                {
+                    Debug.Log("Path found with " + path.Count + " nodes.");
                 }
                 else
                 {
-                    path = graph.AStarSearch(graph.GetNode(transform.position), graph.GetNode(playerPosition));
-
-                    if (path != null)
-                    {
-                        Debug.Log("New path found with " + path.Count + " nodes.");
-                        if (path.Count > 0)
-                        {
-                            Debug.Log("First node in new path is at position " + path[0].position);
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("No path found to player's new position.");
-                    }
+                    Debug.Log("No path found.");
                 }
             }
 
-            yield return new WaitForSeconds(1f); // Wait for 1 second
+            yield return new WaitForSeconds(updateInterval); 
         }
     }
 
@@ -104,32 +114,44 @@ public class HungryZombieController : MonoBehaviour
     {
         if (path != null && path.Count > 0)
         {
-            Vector3 targetPosition = path[0].position;
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime);
+            GraphNode nextNode = path[0];
 
-            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            float sqrDistanceToTarget = (nextNode.position - transform.position).sqrMagnitude;
+
+            if (sqrDistanceToTarget < 0.1f * 0.1f)
             {
                 path.RemoveAt(0);
             }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, nextNode.position, Time.deltaTime);
+            }
         }
     }
+
 }
 
 public class Graph
 {
     public GraphNode[,] nodes;
     private Vector3 offset;
+    private int graphWidth = 62;
+    private int graphHeight = 33;
+    Vector3 graphOffset = Vector3.zero;
 
-    public Graph(int width, int height, Vector3 offset)
+    public Graph()
     {
-        nodes = new GraphNode[width, height];
+        nodes = new GraphNode[graphWidth, graphHeight];
         this.offset = offset;
 
-        for (int x = 0; x < width; x++)
+        Vector3Int offsetInt = new Vector3Int((int)offset.x, (int)offset.y, 0);
+
+        for (int x = 0; x < graphWidth; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < graphHeight; y++)
             {
-                nodes[x, y] = new GraphNode(new Vector3(x + offset.x, y + offset.y, 0));
+                Vector3Int nodePosition = new Vector3Int(x, y, 0) + offsetInt;
+                nodes[x, y] = new GraphNode(nodePosition);
             }
         }
     }
@@ -139,19 +161,13 @@ public class Graph
         int x = Mathf.FloorToInt(position.x - offset.x);
         int y = Mathf.FloorToInt(position.y - offset.y);
 
-        Debug.Log("Transforming world position " + position + " to graph position: (" + x + ", " + y + ")");
-
-        if (x < 0 || x >= nodes.GetLength(0) || y < 0 || y >= nodes.GetLength(1))
+        if (x < 0 || x >= graphWidth || y < 0 || y >= graphHeight)
         {
-            Debug.LogError("Position is outside the bounds of the graph: " + position + ", converted: " + new Vector3(x, y, 0));
             return null;
         }
 
-        Debug.Log("Position is inside the bounds of the graph: " + x + ", " + y);
-
         return nodes[x, y];
     }
-
 
     public List<GraphNode> AStarSearch(GraphNode startNode, GraphNode endNode)
     {
@@ -200,15 +216,18 @@ public class Graph
             }
         }
 
-        return null;  // No path found
+        return null; 
     }
 
     public IEnumerable<GraphNode> GetNeighbors(GraphNode node)
     {
         int x = Mathf.FloorToInt(node.position.x - offset.x);
         int y = Mathf.FloorToInt(node.position.y - offset.y);
-    
-        if (y + 1 < nodes.GetLength(1)) 
+
+        int nodesLength0 = nodes.GetLength(0);
+        int nodesLength1 = nodes.GetLength(1);
+
+        if (y + 1 < nodesLength1) 
         {
             var neighbor = nodes[x, y + 1];
             neighbor.IsWall = IsPositionBlocked(neighbor.position);
@@ -220,7 +239,7 @@ public class Graph
             neighbor.IsWall = IsPositionBlocked(neighbor.position);
             if (!neighbor.IsWall) yield return neighbor;
         }
-        if (x + 1 < nodes.GetLength(0)) 
+        if (x + 1 < nodesLength0) 
         {
             var neighbor = nodes[x + 1, y];
             neighbor.IsWall = IsPositionBlocked(neighbor.position);
@@ -236,9 +255,7 @@ public class Graph
 
     public bool IsPositionBlocked(Vector3 position)
     {
-
-        Collider2D hitCollider = Physics2D.OverlapCircle(position, 0.5f);
-        Debug.Log(position);
+        Collider2D hitCollider = Physics2D.OverlapCircle(position, 0.2f);
         if (hitCollider != null && hitCollider.gameObject.tag == "Wall")
         {
             return true;
@@ -253,7 +270,6 @@ public class Graph
         int y = Mathf.FloorToInt(position.y - offset.y);
 
         bool withinBounds = x >= 0 && x < nodes.GetLength(0) && y >= 0 && y < nodes.GetLength(1);
-        Debug.Log("Checking if position " + position + " is within bounds: " + withinBounds);
         return withinBounds;
     }
 }
@@ -261,9 +277,9 @@ public class Graph
 public class GraphNode
 {
     public Vector3 position;
-    public GraphNode CameFrom;  // The node it came from
-    public float GValue;  // Cost from start to this node
-    public float HValue;  // Estimated cost from this node to end
+    public GraphNode CameFrom;  
+    public float GValue;  
+    public float HValue;  
     public bool IsWall { get; set; }
 
     public GraphNode(Vector3 position)
@@ -271,7 +287,7 @@ public class GraphNode
         this.position = position;
     }
 
-    public float F()  // Total cost
+    public float F() 
     {
         return GValue + HValue;
     }
