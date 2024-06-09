@@ -228,6 +228,7 @@ public class Graph
         int nodesLength0 = nodes.GetLength(0);
         int nodesLength1 = nodes.GetLength(1);
 
+        // Vertical
         if (y + 1 < nodesLength1) 
         {
             var neighbor = nodes[x, y + 1];
@@ -249,6 +250,32 @@ public class Graph
         if (x - 1 >= 0) 
         {
             var neighbor = nodes[x - 1, y];
+            neighbor.IsWall = IsPositionBlocked(neighbor.position);
+            if (!neighbor.IsWall) yield return neighbor;
+        }
+
+        // Diagonal
+        if (x + 1 < nodesLength0 && y + 1 < nodesLength1)
+        {
+            var neighbor = nodes[x + 1, y + 1];
+            neighbor.IsWall = IsPositionBlocked(neighbor.position);
+            if (!neighbor.IsWall) yield return neighbor;
+        }
+        if (x - 1 >= 0 && y - 1 >= 0)
+        {
+            var neighbor = nodes[x - 1, y - 1];
+            neighbor.IsWall = IsPositionBlocked(neighbor.position);
+            if (!neighbor.IsWall) yield return neighbor;
+        }
+        if (x + 1 < nodesLength0 && y - 1 >= 0)
+        {
+            var neighbor = nodes[x + 1, y - 1];
+            neighbor.IsWall = IsPositionBlocked(neighbor.position);
+            if (!neighbor.IsWall) yield return neighbor;
+        }
+        if (x - 1 >= 0 && y + 1 < nodesLength1)
+        {
+            var neighbor = nodes[x - 1, y + 1];
             neighbor.IsWall = IsPositionBlocked(neighbor.position);
             if (!neighbor.IsWall) yield return neighbor;
         }
