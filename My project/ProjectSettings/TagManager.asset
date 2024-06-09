@@ -11,6 +11,7 @@ TagManager:
   - BlindGazer
   - Exit
   - Coward Rat
+  - HungryZombie
   layers:
   - Default
   - TransparentFX

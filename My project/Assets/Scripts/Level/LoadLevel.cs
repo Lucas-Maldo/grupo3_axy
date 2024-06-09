@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject blindGazerPrefab;
     public GameObject cowardRatPrefab;
     public GameObject exitPrefab;
+    public GameObject hungryZombiePrefab;
     public string levelFilePath = "Assets/Scripts/Level/Level01.txt";
 
     void Start()
@@ -29,22 +30,25 @@ public class LevelLoader : MonoBehaviour
                 switch (tileChar)
                 {
                     case '1':
-                        Instantiate(wallPrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        Instantiate(wallPrefab, new Vector3(x, -y + 32, 0), Quaternion.identity);
                         break;
                     case '2':
-                        Instantiate(playerPrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        Instantiate(playerPrefab, new Vector3(x, -y + 32, 0), Quaternion.identity);
                         break;
                     case '3':
-                        Instantiate(skeletonPrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        Instantiate(skeletonPrefab, new Vector3(x, -y + 32, 0), Quaternion.identity);
                         break;
                     case '4':
-                        Instantiate(blindGazerPrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        Instantiate(blindGazerPrefab, new Vector3(x, -y + 32, 0), Quaternion.identity);
                         break;
                     case '5':
-                        Instantiate(exitPrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        Instantiate(exitPrefab, new Vector3(x, -y + 32, 0), Quaternion.identity);
                         break;
                     case '6':
-                        Instantiate(cowardRatPrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        Instantiate(cowardRatPrefab, new Vector3(x, -y + 32, 0), Quaternion.identity);
+                        break;
+                    case '7':
+                        Instantiate(hungryZombiePrefab, new Vector3(x, -y + 32, 0), Quaternion.identity);
                         break;
                 }
             }
