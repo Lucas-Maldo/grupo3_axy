@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2712058210548599567}
   - component: {fileID: 7799059175630414229}
-  - component: {fileID: 531037984198971985}
+  - component: {fileID: 961669840610943095}
   m_Layer: 0
   m_Name: Hungry Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &531037984198971985
+--- !u!114 &961669840610943095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3292439454642924470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60c1a5f854b44f24f8b9a264f9755055, type: 3}
+  m_Script: {fileID: 11500000, guid: 618f5a579852f4b42a13361784ea67ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  targetNode: {x: 0, y: 0}
+  playerPosition: {fileID: 4611780797347754477, guid: 98607020eec4c2947abeecf1d0b801b0, type: 3}
+  moveSpeed: 2

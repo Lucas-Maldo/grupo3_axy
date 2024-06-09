@@ -48,9 +48,9 @@ public class LevelLoader : MonoBehaviour
                     case '6':
                         Instantiate(cowardRatPrefab, new Vector3(x, -y, 0), Quaternion.identity);
                         break;
-                    // case '7':
-                    //     Instantiate(hungryZombiePrefab, new Vector3(x, -y, 0), Quaternion.identity);
-                    //     break;
+                    case '7':
+                        Instantiate(hungryZombiePrefab, new Vector3(x, -y, 0), Quaternion.identity);
+                        break;
                 }
             }
         }
