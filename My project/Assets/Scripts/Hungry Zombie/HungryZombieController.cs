@@ -92,7 +92,7 @@ public class HungryZombieController : MonoBehaviour
                 if (!IsPositionsWithinGraphBounds(enemyPosition, playerPosition))
                 {
                     Debug.LogError("Enemy or player position is outside the bounds of the graph.");
-                    //break; // Aca hay que agregar el tema de si choca al jugador
+                    break; 
                 }
 
                 path = CalculatePathToPlayer(enemyPosition, playerPosition);
