@@ -15,8 +15,14 @@ public class CowardRatController : MonoBehaviour
     private Rigidbody2D rb;
     private float directionChangeTimer;
     private Vector2 direction;
-    private int myIndex; 
+    private int myIndex;
 
+    void OnEnable()
+    {
+        currentRatIndex = 0;
+        totalRats = 0;
+    }
+    
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
