@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour, IObserver
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Arrow" || collision.gameObject.tag == "BlindGazer" || collision.gameObject.tag == "Skeleton")
+        if (collision.gameObject.tag == "Arrow" || collision.gameObject.tag == "BlindGazer" || collision.gameObject.tag == "Skeleton" ||  collision.gameObject.tag == "HungryZombie")
         {
             Debug.Log("Collided with: " + collision.gameObject.tag);
             startTime = Time.time;

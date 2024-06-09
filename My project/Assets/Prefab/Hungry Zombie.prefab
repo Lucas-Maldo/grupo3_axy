@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3108995515869896450}
   m_Layer: 0
   m_Name: Hungry Zombie
-  m_TagString: Untagged
+  m_TagString: HungryZombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4611780797347754477, guid: 98607020eec4c2947abeecf1d0b801b0, type: 3}
+  velocity: 4
 --- !u!61 &3108995515869896450
 BoxCollider2D:
   m_ObjectHideFlags: 0

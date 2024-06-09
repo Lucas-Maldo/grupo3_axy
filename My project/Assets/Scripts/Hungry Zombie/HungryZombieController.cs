@@ -10,6 +10,7 @@ public class HungryZombieController : MonoBehaviour
     public List<GraphNode> path;
     private Vector3 lastPlayerPosition;
     private const float updateInterval = 1.0f; 
+    public float velocity = 2.0f;
 
     void Awake()
     {
@@ -124,7 +125,7 @@ public class HungryZombieController : MonoBehaviour
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, nextNode.position, Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, nextNode.position, velocity * Time.deltaTime);
             }
         }
     }
