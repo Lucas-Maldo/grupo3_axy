@@ -12,6 +12,7 @@ TagManager:
   - Exit
   - Coward Rat
   - HungryZombie
+  - Background
   layers:
   - Default
   - TransparentFX

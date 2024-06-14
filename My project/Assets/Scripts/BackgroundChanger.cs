@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class BackgroundChanger : MonoBehaviour
 {
     Dictionary <string, Color> colors = new Dictionary<string, Color>();
+    public string status = "Night";
  
     // private Background background;
     public Image image;
@@ -21,13 +22,13 @@ public class BackgroundChanger : MonoBehaviour
 
     IEnumerator ExecuteEveryMinute()
     {
-        string status = "Night";
+        status = "Night";
         while (true)
         {
             image.color = colors[status];
             if(status == "Night") status = "Day";
             else status = "Night";
-            yield return new WaitForSeconds(30f);
+            yield return new WaitForSeconds(5f);
         }
     }
 }

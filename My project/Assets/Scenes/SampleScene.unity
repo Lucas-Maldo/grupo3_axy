@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 1667960839}
   m_Layer: 5
   m_Name: background
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -601,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8daee643295e1994799eb67e3ce3a6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: Night
   image: {fileID: 0}
 --- !u!1 &2107296118
 GameObject:
