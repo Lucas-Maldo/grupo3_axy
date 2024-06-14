@@ -13,6 +13,8 @@ TagManager:
   - Coward Rat
   - HungryZombie
   - Background
+  - Rat
+  - NightRat
   layers:
   - Default
   - TransparentFX
