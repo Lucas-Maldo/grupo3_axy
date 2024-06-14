@@ -70,8 +70,7 @@ public class CowardRatController : MonoBehaviour
         currentRatIndex = (currentRatIndex + 1) % totalRats;
 
         background_status = backgroundGameObject.GetComponent<BackgroundChanger>().status;
-        Debug.Log(background_status);
-
+        
         Traverse(root);
     }
 
@@ -100,14 +99,24 @@ public class CowardRatController : MonoBehaviour
         }
     }
 
-    void Flee() {
-        if (background_status == "Night")
+    void MoveTowardsPlayerIfClose()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        if (distanceToPlayer <= 6f)
         {
-            direction = (transform.position - player.transform.position).normalized;
+            Vector2 direction = (player.transform.position - transform.position).normalized;
             rb.velocity = direction * attackSpeed;
         }
-        else if (background_status == "Day")
-        {
+    }
+
+    void Flee() {
+        if (background_status == "Night") {
+            gameObject.tag = "NightRat";
+            MoveTowardsPlayerIfClose();
+        }
+        else if (background_status == "Day") {
+            gameObject.tag = "Rat";
             direction = (transform.position - player.transform.position).normalized;
             rb.velocity = direction * fleeSpeed;
         }
