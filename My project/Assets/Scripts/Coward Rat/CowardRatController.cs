@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CowardRatController : MonoBehaviour
@@ -16,7 +17,20 @@ public class CowardRatController : MonoBehaviour
     private float directionChangeTimer;
     private Vector2 direction;
     private int myIndex;
-
+    
+    class DecisionNode
+    {
+        public Func<bool> Condition { get; set; }
+        public Action TrueAction { get; set; }
+        public Action FalseAction { get; set; }
+    }
+    DecisionNode root;
+    
+    enum RatAction
+    {
+        Idle,
+        Fleeing
+    }
     void OnEnable()
     {
         currentRatIndex = 0;
@@ -27,7 +41,15 @@ public class CowardRatController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
         directionChangeTimer = directionChangeInterval;
+
+        root = new DecisionNode
+        {
+            Condition = () => Vector2.Distance(transform.position, player.transform.position) <= detectionRadius,
+            TrueAction = () => Flee(),
+            FalseAction = () => Idle()
+        };
 
         myIndex = totalRats; 
         totalRats++; 
@@ -42,25 +64,7 @@ public class CowardRatController : MonoBehaviour
 
         directionChangeTimer -= Time.fixedDeltaTime;
 
-        if (directionChangeTimer <= 0 || IsWallInDirection(direction))
-        {
-            do
-            {
-                direction = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)).normalized;
-            }
-            while (IsWallInDirection(direction));
-
-            directionChangeTimer = directionChangeInterval;
-        }
-
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
-        if (distanceToPlayer <= detectionRadius)
-        {
-            direction = (transform.position - player.transform.position).normalized;
-        }
-
-        rb.velocity = direction * (distanceToPlayer <= detectionRadius ? fleeSpeed : wanderSpeed);
+        Traverse(root);
 
         currentRatIndex = (currentRatIndex + 1) % totalRats;
     }
@@ -76,6 +80,31 @@ public class CowardRatController : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             direction = -direction;
+        }
+    }
+    void Traverse(DecisionNode node)
+    {
+        if (node.Condition())
+        {
+            node.TrueAction(); //Flee
+        }
+        else
+        {
+            node.FalseAction(); //Idle
+        }
+    }
+
+    void Flee() {
+        direction = (transform.position - player.transform.position).normalized;
+        rb.velocity = direction * fleeSpeed;
+    }
+
+    void Idle() {
+        if (directionChangeTimer <= 0 || IsWallInDirection(direction))
+        {
+            direction = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
+            directionChangeTimer = directionChangeInterval;
+            rb.velocity = direction * wanderSpeed;
         }
     }
 }
