@@ -9,9 +9,7 @@ public class BackgroundChanger : MonoBehaviour
 {
     Dictionary <string, Color> colors = new Dictionary<string, Color>();
     public string status = "Night";
- 
-    // private Background background;
-    public Image image;
+     public Image image;
     void Start()
     {
         colors.Add("Night", new Color(0.182f, 0.535f, 0.638f, 1f));
@@ -25,9 +23,9 @@ public class BackgroundChanger : MonoBehaviour
         status = "Night";
         while (true)
         {
-            image.color = colors[status];
             if(status == "Night") status = "Day";
             else status = "Night";
+            image.color = colors[status];
             yield return new WaitForSeconds(5f);
         }
     }
