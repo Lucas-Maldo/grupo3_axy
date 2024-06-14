@@ -17,6 +17,7 @@ public class CowardRatController : MonoBehaviour
     private GameObject player;
     private Rigidbody2D rb;
     private string background_status;
+    private GameObject backgroundGameObject;
     private float directionChangeTimer;
     private Vector2 direction;
     private int myIndex;
@@ -41,7 +42,9 @@ public class CowardRatController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
 
-        background_status = GameObject.FindGameObjectWithTag("Background").GetComponent<BackgroundChanger>().status;
+        backgroundGameObject = GameObject.FindGameObjectWithTag("Background");
+
+        background_status = backgroundGameObject.GetComponent<BackgroundChanger>().status;
 
         directionChangeTimer = directionChangeInterval;
 
@@ -64,11 +67,12 @@ public class CowardRatController : MonoBehaviour
         }
 
         directionChangeTimer -= Time.fixedDeltaTime;
-
-        // Traverse(root);
-
         currentRatIndex = (currentRatIndex + 1) % totalRats;
+
+        background_status = backgroundGameObject.GetComponent<BackgroundChanger>().status;
         Debug.Log(background_status);
+
+        Traverse(root);
     }
 
     bool IsWallInDirection(Vector2 direction)
